@@ -143,6 +143,67 @@ severe performance degradation.
 
 ---
 
+## Usage
+
+```
+from gpc_encoder import gpc_encoder
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+# ------------------------------------------------------------
+# Example dataset preparation
+# ------------------------------------------------------------
+# Assume a tabular dataset with both numerical and categorical features.
+# 'target' is the label column and is NOT used during encoding.
+
+df = pd.read_csv("dataset.csv")
+
+# Define categorical feature columns
+cat_cols = ["category_A", "category_B"]
+
+# Separate features and target
+X = df.drop(columns=["target"])
+y = df["target"]
+
+# Split data into training and test sets
+# GPCE uses ONLY training data to construct category embeddings,
+# which prevents data leakage.
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# ------------------------------------------------------------
+# GPCE hyperparameters
+# ------------------------------------------------------------
+D = 16              # Target embedding dimension for each categorical feature
+R = 1.0             # Radius of the hypersphere for category vectors
+RANDOM_SEED = 42    # Random seed for reproducibility
+
+# ------------------------------------------------------------
+# Apply Geometry Preserving Categorical Encoder (GPCE)
+# ------------------------------------------------------------
+# Each categorical value is mapped to a D-dimensional vector:
+# - All category vectors have equal norm (radius R)
+# - Pairwise distances are approximately preserved via random projection
+# - No target information is used (leakage-free)
+
+X_train_enc, X_test_enc = gpc_encoder(
+    X_train=X_train,
+    X_test=X_test,
+    cat_cols=cat_cols,
+    d=D,
+    r=R,
+    seed=RANDOM_SEED
+)
+
+# The resulting encoded datasets:
+# - Contain original numerical features
+# - Replace each categorical column with D numerical features
+# - Are directly usable in standard machine learning models
+```
+
+---
+
 ## Sample Dataset
 
 The experiments in this repository use the **Bank Marketing Dataset** from Kaggle:

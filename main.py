@@ -29,8 +29,8 @@ from sklearn.preprocessing import LabelEncoder
 from category_encoders import TargetEncoder, OneHotEncoder
 
 # CONFIG
-TARGET_COL = '' # Target feature's name
-CSV_FILE_NAME = '' # CSV file's name
+TARGET_COL = 'deposit' # Target feature's name
+CSV_FILE_NAME = 'bank.csv' # CSV file's name
 DATA_LEN_LIMIT = 10000 # Limits the number of rows in the data
 RANDOM_SEED = 42
 MODELS = {"LogReg": Pipeline([("scaler", StandardScaler()), ("clf", LogisticRegression(max_iter=2000))]),

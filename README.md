@@ -6,14 +6,14 @@ The **Geometry Preserving Categorical Encoder (GPCE)** is a novel categorical da
 
 This repository contains the full implementation of GPCE, along with experimental code used to evaluate its performance against widely adopted categorical encoders.
 
----
+
 
 ## Requirements
 
 - **Python 3.11.4**
 - See `requirements.txt` for full dependency details
 
----
+
 
 ## Motivation
 
@@ -37,7 +37,7 @@ Most machine learning models require numerical inputs, making categorical encodi
 
 No single traditional method successfully resolves all of these issues at once. GPCE is designed to address this gap.
 
----
+
 
 ## Key Idea Behind GPCE
 
@@ -49,7 +49,7 @@ GPCE is based on a **geometric interpretation of categorical variables**. Instea
 
 This geometric symmetry ensures that categories are treated as **equally distinct entities**, faithfully reflecting their categorical nature.
 
----
+
 
 ## Core Design Principles
 
@@ -64,7 +64,7 @@ GPCE is built upon three core principles:
 3. **Leakage-Free Encoding**  
    The encoding process is completely independent of target labels and uses only training data.
 
----
+
 
 ## Methodology
 
@@ -81,7 +81,7 @@ For each categorical feature:
 
 The resulting encoded features are concatenated with existing numerical features and passed directly to machine learning models.
 
----
+
 
 ## Advantages of GPCE
 
@@ -94,7 +94,7 @@ The resulting encoded features are concatenated with existing numerical features
 
 While GPCE may not always achieve the single highest accuracy in every setting, it consistently performs near the top and rarely exhibits severe performance degradation.
 
----
+
 
 ## Experimental Evaluation
 
@@ -113,7 +113,7 @@ Across multiple models, including:
 
 Results demonstrate that GPCE achieves **high predictive stability and competitive accuracy** across diverse learning algorithms.
 
----
+
 
 ## Experimental Results
 
@@ -141,7 +141,7 @@ While it does not always achieve the highest accuracy in every setting,
 it consistently performs better than most baseline encoders and avoids
 severe performance degradation.
 
----
+
 
 ## Usage
 
@@ -202,7 +202,7 @@ X_train_enc, X_test_enc = gpc_encoder(
 # - Are directly usable in standard machine learning models
 ```
 
----
+
 
 ## Sample Dataset
 
@@ -212,7 +212,7 @@ The experiments in this repository use the **Bank Marketing Dataset** from Kaggl
 
 This dataset contains multiple high-cardinality categorical features and serves as a realistic benchmark for evaluating categorical encoding methods.
 
----
+
 
 ## License
 
